@@ -1,17 +1,47 @@
-# Redirects for jchellmuth.com -> hellmuthlab.org  (Netlify "_redirects" format)
-# Use these once jchellmuth.com is hosted on Netlify (GitHub Pages cannot send real 301 redirects).
-# Keep this file as the checklist of what moved where.
+# jchellmuth.com (and www.jchellmuth.com)  ->  hellmuthlab.org / cooking.jchellmuth.com
+# Netlify "_redirects" format. First matching rule wins; "!" = force (also when a file exists).
+# Created 2026-11-07. Keep this file as the checklist of what moved where.
 
-# Tutorials
-/posts/FACS-with-R/                                                   https://hellmuthlab.org/code/facs-with-r/   301
-/news/code/ggplot/visualization/tutorial/2020/01/03/3C-arc-plot.html  https://hellmuthlab.org/code/3c-arc-plot/    301
-/code/                                                                https://hellmuthlab.org/code/               301
+# --- Tutorials (moved to hellmuthlab.org) ---
+/posts/FACS-with-R/                                                    https://hellmuthlab.org/code/facs-with-r/   301!
+/draft/FACS-with-R-v1/                                                 https://hellmuthlab.org/code/facs-with-r/   301!
+/news/code/ggplot/visualization/tutorial/2020/01/03/3C-arc-plot.html   https://hellmuthlab.org/code/3c-arc-plot/   301!
+/code/                                                                 https://hellmuthlab.org/code/               301!
 
-# Downloads and code notebooks
-/downloads/2020-07-08-FACS-data.zip        https://hellmuthlab.org/downloads/2020-07-08-FACS-data.zip        301
-/downloads/2020-01-03-3C-dummy-data.txt    https://hellmuthlab.org/downloads/2020-01-03-3C-dummy-data.txt    301
-/html/*                                    https://hellmuthlab.org/resources/mol-cell-2020/:splat            301
+# --- Downloads and code notebooks ---
+/downloads/2020-07-08-FACS-data.zip      https://hellmuthlab.org/downloads/2020-07-08-FACS-data.zip      301!
+/downloads/2020-01-03-3C-dummy-data.txt  https://hellmuthlab.org/downloads/2020-01-03-3C-dummy-data.txt  301!
+/html/*                                  https://hellmuthlab.org/resources/mol-cell-2020/:splat          301!
 
-# Not moved (stays on jchellmuth.com): /recipes/, /cooking/, personal pages
-# Not moved on purpose: "Posting Rmarkdowns to your Jekyll website" (no longer relevant),
-#   FACS tutorial v1 (/draft/FACS-with-R-v1/), the Mol Cell PDF (publisher copyright)
+# --- Publications ---
+/publications/   https://hellmuthlab.org/publications/               301!
+/pdfs/*          https://pubmed.ncbi.nlm.nih.gov/33232656/            301!
+
+# --- Short links that already pointed elsewhere ---
+/scholar   https://scholar.google.com/citations?hl=de&user=voIBaRUAAAAJ                    301!
+/ncbi      https://www.ncbi.nlm.nih.gov/myncbi/1pUmA1takio5y/bibliography/public/         301!
+/orcid     https://orcid.org/0000-0001-8409-3037                                          301!
+
+# --- Cooking (moved to cooking.jchellmuth.com, same paths) ---
+/cooking/             https://cooking.jchellmuth.com/                  301!
+/biscuit-tortoni/     https://cooking.jchellmuth.com/biscuit-tortoni/  301!
+/palatschinken/       https://cooking.jchellmuth.com/palatschinken/    301!
+/bolognese/           https://cooking.jchellmuth.com/bolognese/        301!
+/lamb-w-cumin/        https://cooking.jchellmuth.com/lamb-w-cumin/     301!
+/bananabread/         https://cooking.jchellmuth.com/bananabread/      301!
+/grießflammerie/      https://cooking.jchellmuth.com/grie%C3%9Fflammerie/  301!
+/grie%C3%9Fflammerie/ https://cooking.jchellmuth.com/grie%C3%9Fflammerie/  301!
+/zuppa-di-zucca/      https://cooking.jchellmuth.com/zuppa-di-zucca/   301!
+/hummus/              https://cooking.jchellmuth.com/hummus/           301!
+/mussels-linguine/    https://cooking.jchellmuth.com/mussels-linguine/ 301!
+/greek-coleslaw/      https://cooking.jchellmuth.com/greek-coleslaw/   301!
+/broth/               https://cooking.jchellmuth.com/broth/            301!
+/apple-crisp/         https://cooking.jchellmuth.com/apple-crisp/      301!
+/pulled-pork/         https://cooking.jchellmuth.com/pulled-pork/      301!
+
+# --- Everything else on the old news/ path (e.g. the dropped Jekyll post) ---
+/news/*   https://hellmuthlab.org/code/   301!
+
+# --- Home page and catch-all (302 so a forgotten path is not cemented as permanent) ---
+/    https://hellmuthlab.org/   301!
+/*   https://hellmuthlab.org/   302!
