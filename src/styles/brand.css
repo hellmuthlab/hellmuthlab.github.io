@@ -1,0 +1,76 @@
+/* ---------- Hellmuth Lab brand tokens ----------
+   Simple theme: Open Sans text, sentence-case headings, navy base, deep violet for hover/accents. */
+
+
+
+:root {
+  /* logo palette */
+  --navy: #343a6b;
+  --blue: #2d84db;
+  --violet: #9171ea;
+  --violet-deep: #744ec4;
+
+  --font-display: var(--font-body);
+  --font-body: 'Open Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: var(--font-body);
+  --font-mono: var(--font-body);
+
+  /* Light theme (default) */
+  --bg: #fdfdfd;
+  --bg-soft: #f6f6f9;
+  --text: #262a52;
+  --text-muted: #5b5f85;
+  --link: #1c62ae;
+  --accent: var(--violet-deep);   /* hover colour: links, menu, buttons, cards */
+  --nav-active: var(--violet-deep);
+  --title: var(--navy);
+  --kicker: var(--navy);          /* sub-headers */
+  --h1-weight: 600;
+  --border: #dcdce8;
+  --btn: var(--navy);
+  --btn-hover: var(--violet-deep);
+  --note-border: #a3a6c4;         /* placeholder / note boxes */
+  --note-bg: #fbfafd;             /* ~3% deep violet */
+  --grad: linear-gradient(135deg, #343a6b, #744ec4);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --navy: #9fbdee;
+    --bg: #1c1f3d;
+    --bg-soft: #2f3568;
+    --text: #ececf8;
+    --text-muted: #b3b6d6;
+    --link: #8dbcf3;
+    --accent: #b9a8f3;
+    --nav-active: #9171ea;
+    --title: #ffffff;
+    --kicker: #ececf8;
+    --border: #4a5192;
+    --btn: #2d84db;
+    --btn-hover: #744ec4;
+    --note-border: #5a5f93;
+    --note-bg: #232447;
+    --grad: linear-gradient(135deg, #2d84db, #744ec4);
+  }
+}
+
+/* ---------- Starlight (protocols / lab manual) mapping ---------- */
+:root {
+  --sl-font: var(--font-body);
+}
+:root[data-theme='light'] {
+  --sl-color-accent-low: #efe9fa;
+  --sl-color-accent: #744ec4;
+  --sl-color-accent-high: #343a6b;
+  --sl-color-text-accent: #1c62ae;
+}
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #2a2552;
+  --sl-color-accent: #9171ea;
+  --sl-color-accent-high: #cfc3f8;
+  --sl-color-text-accent: #8dbcf3;
+  --sl-color-black: #1c1f3d;
+  --sl-color-gray-6: #2f3568;
+  --sl-color-gray-5: #4a5192;
+}

@@ -1,0 +1,64 @@
+---
+// Toolbar for protocol pages: bench mode (distraction-free, big type, screen stays awake),
+// tick boxes that remember their state on this device, and print / PDF.
+---
+<div class="bench-tools" role="toolbar" aria-label="Protocol tools">
+  <button type="button" data-bench-toggle aria-pressed="false">Bench mode</button>
+  <button type="button" data-bench-reset>Clear ticks</button>
+  <button type="button" data-bench-print>Print / PDF</button>
+  <span class="bench-status" data-bench-status hidden>Screen stays on</span>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const toggle = document.querySelector<HTMLButtonElement>('[data-bench-toggle]');
+  const reset = document.querySelector<HTMLButtonElement>('[data-bench-reset]');
+  const print = document.querySelector<HTMLButtonElement>('[data-bench-print]');
+  const status = document.querySelector<HTMLElement>('[data-bench-status]');
+
+  // ---- tick boxes (remembered per page, per device) ----
+  const KEY = `bench-ticks:${location.pathname}`;
+  let ticks: Record<string, boolean> = {};
+  try { ticks = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { /* storage unavailable */ }
+  const boxes = Array.from(document.querySelectorAll<HTMLInputElement>('.sl-markdown-content input[type="checkbox"]'));
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ticks)); } catch { /* ignore */ } };
+  boxes.forEach((box, i) => {
+    box.disabled = false;
+    box.checked = !!ticks[i];
+    box.addEventListener('change', () => { ticks[i] = box.checked; save(); });
+  });
+  reset?.addEventListener('click', () => { ticks = {}; boxes.forEach((b) => (b.checked = false)); save(); });
+
+  // ---- keep the screen awake while in bench mode ----
+  let lock: { release: () => Promise<void> } | null = null;
+  async function keepAwake(on: boolean) {
+    try {
+      if (on && 'wakeLock' in navigator) {
+        lock = await (navigator as any).wakeLock.request('screen');
+        if (status) status.hidden = false;
+      } else if (lock) {
+        await lock.release(); lock = null;
+        if (status) status.hidden = true;
+      }
+    } catch { /* not supported or denied */ }
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (root.classList.contains('bench') && document.visibilityState === 'visible') keepAwake(true);
+  });
+
+  // ---- bench mode ----
+  toggle?.addEventListener('click', async () => {
+    const on = !root.classList.contains('bench');
+    root.classList.toggle('bench', on);
+    toggle.setAttribute('aria-pressed', String(on));
+    toggle.textContent = on ? 'Exit bench mode' : 'Bench mode';
+    await keepAwake(on);
+    try {
+      const el: any = root;
+      if (on) await (el.requestFullscreen || el.webkitRequestFullscreen)?.call(el);
+      else if (document.fullscreenElement) await document.exitFullscreen();
+    } catch { /* fullscreen not available (e.g. iPhone) - layout still works */ }
+  });
+
+  print?.addEventListener('click', () => window.print());
+</script>

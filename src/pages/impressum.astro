@@ -1,0 +1,51 @@
+---
+import Plain from '../layouts/Plain.astro';
+import Email from '../components/Email.astro';
+---
+<Plain title="Impressum / Legal Notice" description="Impressum (Legal Notice) of the Hellmuth Lab.">
+  <h1>Impressum / Legal Notice</h1>
+
+  <div>
+    <section lang="de">
+      <h2>Deutsch</h2>
+
+      <h3>Angaben gemäß § 5 DDG</h3>
+      <address>
+        Dr. med. Johannes C. Hellmuth<br />
+        Experimental Leukemia and Lymphoma Research (ELLF)<br />
+        Max-Lebsche-Platz 30<br />
+        81377 München
+      </address>
+
+      <h3>Kontakt</h3>
+      <p>
+        E-Mail: <Email user="johannes.hellmuth" domain="med.lmu.de" />
+      </p>
+
+      <h3>Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h3>
+      <p>Dr. med. Johannes C. Hellmuth, Anschrift wie oben.</p>
+
+      <p>Bei Abweichungen gilt die deutsche Fassung.</p>
+    </section>
+
+    <section lang="en">
+      <h2>English</h2>
+
+      <h3>Legal Notice pursuant to § 5 DDG</h3>
+      <address>
+        Dr. med. Johannes C. Hellmuth<br />
+        Experimental Leukemia and Lymphoma Research (ELLF)<br />
+        Max-Lebsche-Platz 30<br />
+        81377 Munich, Germany
+      </address>
+
+      <h3>Contact</h3>
+      <p>
+        Email: <Email user="johannes.hellmuth" domain="med.lmu.de" />
+      </p>
+
+      <h3>Responsible for content (§ 18 (2) MStV)</h3>
+      <p>Dr. med. Johannes C. Hellmuth, address as above.</p>
+    </section>
+  </div>
+</Plain>

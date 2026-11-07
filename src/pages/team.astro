@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Base from '../layouts/Base.astro';
+import data from '../data/members.json';
+import outing1 from '../assets/photos/lab-outing-1.jpg';
+import outing2 from '../assets/photos/lab-outing-2.jpg';
+
+// Portraits: put a file in src/assets/team/ and enter its file name in members.json ("photo": "daniel-diecke.jpg")
+const portraits = import.meta.glob<{ default: ImageMetadata }>('../assets/team/*.{jpg,jpeg,png,webp}', { eager: true });
+const portrait = (file: string | null) => (file ? portraits[`../assets/team/${file}`]?.default : undefined);
+
+const initials = (name: string) =>
+  name.replace(/,.*$/, '').split(' ').filter(Boolean).map((p) => p[0]).slice(0, 2).join('');
+const current = data.people.filter((p) => p.group === 'pi' || p.group === 'current');
+const alumni = data.people.filter((p) => p.group === 'alumni');
+---
+<Base title="Team" description="Members and alumni of the Hellmuth Lab.">
+  <h1>Team</h1>
+
+  <ul class="grid">
+    {current.map((p) => (
+      <li class={`card${p.slug ? ' card--link' : ''}`}>
+        {portrait(p.photo) ? (
+          <Image class="card__photo" src={portrait(p.photo)!} alt={p.name} widths={[260, 520]} sizes="13rem" />
+        ) : (
+          <div class="card__photo card__photo--empty" aria-hidden="true">{initials(p.name)}</div>
+        )}
+        <div class="card__body">
+          <h3>{p.slug ? <a href={`/team/${p.slug}/`}>{p.name}</a> : p.name}</h3>
+          <p>{p.role}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+
+  <h2 class="kicker">Alumni</h2>
+  <ul class="grid">
+    {alumni.map((p) => (
+      <li class="card">
+        {portrait(p.photo) ? (
+          <Image class="card__photo" src={portrait(p.photo)!} alt={p.name} widths={[260, 520]} sizes="13rem" />
+        ) : (
+          <div class="card__photo card__photo--empty" aria-hidden="true">{initials(p.name)}</div>
+        )}
+        <div class="card__body">
+          <h3>{p.name}</h3>
+          <p>{p.role}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+
+  <h2 class="kicker">Beyond the Bench</h2>
+  <figure class="gallery">
+    <div class="gallery__row">
+      <Image src={outing1} alt="Lab members painting ceramics around a table during the lab outing" widths={[480, 800, 1200]} sizes="(min-width: 62rem) 30rem, 100vw" />
+      <Image src={outing2} alt="Lab members posing for a group photo outside a restaurant in the evening" widths={[480, 800, 1200]} sizes="(min-width: 62rem) 30rem, 100vw" />
+    </div>
+    <figcaption>Lab Outing 10/2026</figcaption>
+  </figure>
+
+  <h2 class="kicker">Join us</h2>
+  <p>
+    We are always interested in motivated students and scientists. Please get in touch via the <a href="/contact/">contact page</a>.
+  </p>
+</Base>

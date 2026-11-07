@@ -1,0 +1,270 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+a { color: var(--link); text-underline-offset: 0.18em; }
+a:hover { color: var(--accent); }
+img { max-width: 100%; height: auto; }
+
+.wrap { width: min(100% - 2rem, 62rem); margin-inline: auto; }
+
+/* ---------- header ---------- */
+.site-header { border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding-block: 0.75rem; }
+.brand img { display: block; height: 2.9rem; width: auto; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.6rem; }
+.site-nav a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  color: var(--text);
+  text-decoration: none;
+  padding-block: 0.4rem;
+  border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { color: var(--accent); }
+.site-nav a[aria-current='page'] { border-bottom-color: var(--nav-active); }
+
+/* ---------- content ---------- */
+main { padding-block: 2.5rem 4rem; }
+h1, h2, h3 { line-height: 1.25; }
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  font-weight: var(--h1-weight);
+  color: var(--text);
+  margin: 0 0 1.25rem;
+}
+h2 { font-size: 1.35rem; font-weight: 700; margin: 2.5rem 0 0.75rem; }
+.kicker {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--kicker);
+  margin: 2.75rem 0 0.75rem;
+}
+.lead { font-size: 1.25rem; line-height: 1.6; max-width: 46rem; }
+.hero { padding-block: 1rem 0.5rem; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.9rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--title); margin-bottom: 1.5rem; }
+.hero .lead { margin: 0; }
+
+.note, .placeholder {
+  border: 1px dashed var(--note-border);
+  background: var(--note-bg);
+  border-radius: 0.5rem;
+  padding: 0.9rem 1.1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+.placeholder::before { content: 'Placeholder · '; font-weight: 700; color: var(--accent); }
+
+/* ---------- team cards: all the same size, photo on top ---------- */
+.grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); padding: 0; list-style: none; margin: 0; }
+.card { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--bg-soft); overflow: hidden; display: flex; flex-direction: column; }
+.card__photo { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; display: block; }
+.card__photo--empty {
+  display: grid; place-items: center;
+  font-family: var(--font-display); font-size: 2.6rem; color: #fff;
+  background: var(--grad);
+}
+.card__body { padding: 0.9rem 1rem 1.1rem; }
+.card h3 { margin: 0; font-size: 1rem; line-height: 1.3; }
+.card p { margin: 0.25rem 0 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
+
+figure.gallery { margin: 0; }
+.gallery__row { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.gallery__row img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 0.75rem; display: block; }
+figure.gallery figcaption { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.9rem; }
+
+.linkbar { display: flex; flex-wrap: wrap; gap: 0.6rem; padding: 0; list-style: none; margin: 1rem 0; }
+.button {
+  display: inline-block; text-decoration: none; padding: 0.55rem 1.1rem; border-radius: 0.5rem;
+  background: var(--btn); color: #fff; font-weight: 600; font-size: 0.95rem;
+}
+.button:hover { background: var(--btn-hover); color: #fff; }
+
+/* ---------- affiliations / footer ---------- */
+.affil ul { list-style: none; padding: 0; margin: 0.75rem 0 0; display: grid; gap: 0.5rem 2rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.affil li { font-size: 0.95rem; line-height: 1.45; }
+.affil p { margin: 0; color: var(--text-muted); max-width: 46rem; }
+.site-footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: 2rem; font-size: 0.9rem; color: var(--text-muted); }
+.site-footer .affil li { font-size: 0.85rem; }
+.site-footer .meta { margin-top: 1.5rem; display: flex; gap: 0.5rem 1.5rem; flex-wrap: wrap; }
+.site-footer .meta a { color: var(--text-muted); }
+.site-footer .meta a:hover { color: var(--accent); }
+
+address { font-style: normal; line-height: 1.6; }
+
+@media print {
+  .site-header, .site-footer { display: none; }
+}
+
+/* ---------- footer grid ---------- */
+.footer-grid { display: grid; gap: 1.5rem 3rem; grid-template-columns: 2fr 1fr; }
+@media (max-width: 40rem) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-h { font-family: var(--font-display); font-weight: 400; font-size: 0.72rem; color: var(--text-muted); margin: 0 0 0.6rem; }
+.affil { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.35rem; font-size: 0.9rem; line-height: 1.45; }
+
+/* ---------- protocol list on the home page ---------- */
+.plist { list-style: none; padding: 0; margin: 0 0 0.75rem; display: grid; gap: 0.4rem; }
+.plist__sec { margin-inline-start: 0.6rem; color: var(--text-muted); font-size: 0.85rem; }
+
+/* ---------- tutorial list (Code page) ---------- */
+.tutorials { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.75rem; }
+.tutorial { display: grid; gap: 1.25rem; grid-template-columns: 16rem 1fr; align-items: start; }
+.tutorial__img img { width: 100%; height: auto; border: 1px solid var(--border); border-radius: 0.5rem; display: block; background: #fff; }
+.tutorial h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+.tutorial p { margin: 0; color: var(--text-muted); }
+@media (max-width: 40rem) { .tutorial { grid-template-columns: 1fr; } }
+
+.card__links { margin-top: 0.5rem !important; font-size: 0.82rem !important; }
+
+/* ---------- prominent section titles (Code page) ---------- */
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 3.2vw, 1.75rem);
+  line-height: 1.25;
+  color: var(--kicker);
+  margin: 3rem 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+.section-title--first { margin-top: 0; }
+main h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+.tutorial h3 { margin-top: 0; }
+
+/* ---------- tutorial pages ---------- */
+.crumb { margin: 0 0 1rem; font-size: 0.9rem; }
+.article-grid { display: grid; gap: 2rem 3rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 66rem) { .article-grid { grid-template-columns: minmax(0, 1fr) 13rem; } }
+.toc { font-size: 0.85rem; align-self: start; position: sticky; top: 5.5rem; order: -1; }
+@media (min-width: 66rem) { .toc { order: 0; } }
+.toc__title { font-family: var(--font-display); font-size: 0.72rem; color: var(--text-muted); margin: 0 0 0.5rem; }
+.toc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+.toc a { text-decoration: none; color: var(--text-muted); }
+.toc a:hover { color: var(--accent); }
+
+.prose { max-width: 46rem; }
+.prose h2 { font-size: 1.4rem; margin: 2.5rem 0 0.75rem; }
+.prose h3 { font-size: 1.15rem; }
+.prose img { display: block; margin: 1.25rem 0; border: 1px solid var(--border); border-radius: 0.5rem; background: #fff; }
+.prose :not(pre) > code { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 0.3rem; padding: 0.05em 0.35em; font-size: 0.9em; }
+.prose table { display: block; overflow-x: auto; border-collapse: collapse; font-size: 0.9rem; margin: 1.25rem 0; }
+.prose th, .prose td { border: 1px solid var(--border); padding: 0.35rem 0.6rem; text-align: left; white-space: nowrap; }
+.prose th { background: var(--bg-soft); }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+.prose .note { margin: 1.25rem 0; }
+.prose .expressive-code { margin: 1.25rem 0; }
+.prose .expressive-code pre { font-size: 0.85rem; }
+
+/* ---------- team cards that open a profile ---------- */
+.card--link { position: relative; transition: border-color 0.15s, box-shadow 0.15s; }
+.card--link:hover, .card--link:focus-within { border-color: var(--accent); }
+.card--link h3 a { color: var(--text); text-decoration: none; }
+.card--link h3 a::after { content: ''; position: absolute; inset: 0; } /* whole card is the click target */
+.card--link h3 a:focus-visible { outline: none; }
+.card--link:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- profile page ---------- */
+.profile-hero { display: grid; gap: 1.5rem 3rem; grid-template-columns: minmax(0, 1fr) 14rem; align-items: start; }
+.profile-hero h1 { margin-top: 0; }
+.profile-hero .lead { font-size: 1.15rem; margin: 0; }
+.profile-hero__photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 0.75rem; border: 1px solid var(--border); display: block; }
+@media (max-width: 40rem) {
+  .profile-hero { grid-template-columns: 1fr; }
+  .profile-hero__photo { order: -1; max-width: 12rem; }
+}
+
+.timeline { list-style: none; margin: 0 0 0 0.4rem; padding: 0; border-left: 2px solid var(--border); }
+.timeline li { position: relative; padding: 0 0 1.6rem 1.6rem; }
+.timeline li::before {
+  content: ''; position: absolute; left: -0.45rem; top: 0.35rem; width: 0.8rem; height: 0.8rem;
+  border-radius: 50%; background: var(--bg); border: 2px solid var(--navy);
+}
+.timeline__date { margin: 0; font-family: var(--font-display); font-size: 0.75rem; color: var(--kicker); }
+.timeline h3 { margin: 0.2rem 0 0; font-size: 1.05rem; }
+.timeline p { margin: 0.2rem 0 0; max-width: 46rem; }
+.timeline .timeline__place { color: var(--text-muted); font-size: 0.95rem; }
+
+.facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; max-width: 52rem; }
+.facts li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.25rem 1rem; }
+.facts strong { color: var(--kicker); font-weight: 700; }
+@media (max-width: 40rem) { .facts li { grid-template-columns: 1fr; } }
+
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; max-width: 52rem; }
+.pubs h3 { margin: 0.2rem 0 0.4rem; font-size: 1.05rem; }
+.pubs p { margin: 0.25rem 0 0; }
+.pubs__journal { font-family: var(--font-display); font-size: 0.72rem; color: var(--kicker); }
+.pubs__authors { color: var(--text-muted); font-size: 0.88rem; }
+
+/* ---------- Tutorials / posts: formatting carried over from jchellmuth.com (Jekyll "minima") ----------
+   System sans text, light-weight headings, tight big title, plain blue links, pale code blocks. */
+.article-grid .prose {
+  max-width: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.prose h1 {
+  font-family: inherit; text-transform: none; font-weight: 400;
+  font-size: 2.625rem; letter-spacing: -1px; line-height: 1; margin: 0 0 1.9rem;
+}
+.prose h2, .prose h3, .prose h4 { font-family: inherit; font-weight: 400; line-height: 1.25; letter-spacing: 0; text-transform: none; color: var(--text); }
+.prose h2 { font-size: 2rem; margin: 1.9rem 0 0.95rem; }
+.prose h3 { font-size: 1.625rem; margin: 1.6rem 0 0.8rem; }
+.prose h4 { font-size: 1.25rem; margin: 1.4rem 0 0.7rem; }
+@media (max-width: 56rem) {
+  .prose h1 { font-size: 2.25rem; }
+  .prose h2 { font-size: 1.75rem; }
+  .prose h3 { font-size: 1.375rem; }
+  .prose h4 { font-size: 1.125rem; }
+}
+.prose p, .prose ul, .prose ol, .prose pre, .prose blockquote, .prose figure { margin: 0 0 0.95rem; }
+.prose ul, .prose ol { padding-inline-start: 2rem; }
+.prose a { text-decoration: none; }
+.prose a:hover { text-decoration: underline; }
+.prose blockquote {
+  color: #828282; border-left: 4px solid #e8e8e8; padding-left: 0.95rem;
+  font-size: 1.125rem; letter-spacing: -1px; font-style: italic;
+}
+.prose img { border: 0; border-radius: 0; background: none; margin: 0 0 0.95rem; }
+
+/* inline code + code blocks: pale blue-grey box, hairline border, 3px corners */
+.prose :not(pre) > code {
+  background: #eef; border: 1px solid #e8e8e8; border-radius: 3px; padding: 1px 5px; font-size: 0.9375em;
+}
+:root[data-theme='dark'] .prose :not(pre) > code { background: var(--bg-soft); border-color: var(--border); }
+
+/* tables: horizontal rules only, shaded header */
+.prose table { display: table; width: 100%; margin: 0 0 1.9rem; border-collapse: collapse; border: 1px solid #e8e8e8; border-left: 0; border-right: 0; font-size: 1rem; color: var(--text-muted); }
+.prose th, .prose td { padding: 0.65rem 0.95rem; white-space: normal; text-align: left; }
+.prose th { background: #f1f1f1; border: 1px solid #dedede; border-bottom-color: #c8c8c8; color: var(--text); }
+.prose td { border: 1px solid #e8e8e8; border-left: 0; border-right: 0; }
+:root[data-theme='dark'] .prose th { background: var(--bg-soft); border-color: var(--border); }
+:root[data-theme='dark'] .prose td { border-color: var(--border); }
+
+/* code blocks in tutorials: same look as the colour preview (pale box, roomy padding, red strings, teal numbers).
+   Written against the plain markup so it does not depend on Expressive Code's own stylesheet. */
+.prose .expressive-code { margin: 0 0 1.25rem; }
+.prose .expressive-code .frame { margin: 0; background: #f4f4f4; border: 1px solid var(--border); border-radius: 3px; box-shadow: none; overflow: hidden; }
+.prose .expressive-code .header, .prose .expressive-code .copy { display: none !important; }
+.prose .expressive-code pre { margin: 0; padding: 0.7rem 1rem; overflow-x: auto; background: transparent; border: 0; border-radius: 0;
+  font: 13px/1.5 ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; color: #24292f; tab-size: 2; }
+.prose .expressive-code pre code { display: block; width: max-content; min-width: 100%; font: inherit; background: none; border: 0; padding: 0; }
+.prose .expressive-code .ec-line { white-space: pre; }
+.prose .expressive-code .ec-line .code { display: block; }
+/* token colours come from the code theme in astro.config.mjs (two colours + grey comments) */
+.prose .expressive-code .code span { color: var(--1); }
+:root[data-theme='dark'] .prose .expressive-code .frame { background: #232447; }
+:root[data-theme='dark'] .prose .expressive-code pre { color: #e8e9ef; }
+:root[data-theme='dark'] .prose .expressive-code .code span { color: var(--0); }

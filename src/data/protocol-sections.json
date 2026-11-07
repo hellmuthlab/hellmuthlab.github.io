@@ -1,0 +1,9 @@
+[
+  { "slug": "molecular-biology", "label": "Molecular biology" },
+  { "slug": "gene-expression",   "label": "Gene expression" },
+  { "slug": "protein-analysis",  "label": "Protein analysis" },
+  { "slug": "facs",              "label": "FACS" },
+  { "slug": "microscopy",        "label": "Microscopy" },
+  { "slug": "cell-culture",      "label": "Cell culture" },
+  { "slug": "crispr-screening",  "label": "CRISPR screening" }
+]

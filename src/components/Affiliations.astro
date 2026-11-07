@@ -1,0 +1,8 @@
+---
+import data from '../data/affiliations.json';
+---
+<ul class="affil">
+  {data.items.map((a) => (
+    <li>{a.url ? <a href={a.url} rel="noopener">{a.name}</a> : <span>{a.name}</span>}</li>
+  ))}
+</ul>

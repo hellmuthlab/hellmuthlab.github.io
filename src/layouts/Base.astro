@@ -1,0 +1,96 @@
+---
+import '@fontsource-variable/open-sans';
+import '../styles/brand.css';
+import '../styles/site.css';
+import Affiliations from '../components/Affiliations.astro';
+
+interface Props { title?: string; description?: string }
+const {
+  title,
+  description = 'The Hellmuth Lab studies the non-coding genome in cancer, with a focus on lymphoma. LMU Munich · DKTK/DKFZ.',
+} = Astro.props;
+
+const pageTitle = title ? `${title} · Hellmuth Lab` : 'Hellmuth Lab · Non-coding cancer biology';
+const nav = [
+  { href: '/team/', label: 'Team' },
+  { href: '/lab-manual/', label: 'Lab manual' },
+  { href: '/protocols/', label: 'Protocols' },
+  { href: '/code/', label: 'Code' },
+  { href: '/contact/', label: 'Contact' },
+];
+const path = Astro.url.pathname;
+const canonical = new URL(path, Astro.site ?? 'https://hellmuthlab.org');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#343a6b" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hellmuth Lab" />
+    <script is:inline>
+      // lets code blocks follow the visitor's light/dark setting on pages not built by Starlight
+      (function () {
+        var q = matchMedia('(prefers-color-scheme: dark)');
+        var set = function () { document.documentElement.dataset.theme = q.matches ? 'dark' : 'light'; };
+        set(); q.addEventListener && q.addEventListener('change', set);
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="Hellmuth Lab – home">
+          <picture>
+            <source srcset="/brand/logo-dark.svg" media="(prefers-color-scheme: dark)" />
+            <img src="/brand/logo.svg" alt="Hellmuth Lab – Non-coding cancer biology" width="937" height="144" />
+          </picture>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            {nav.map((n) => (
+              <li><a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <section>
+            <h2 class="footer-h">Affiliations</h2>
+            <Affiliations />
+          </section>
+          <section>
+            <h2 class="footer-h">Lab address</h2>
+            <address>
+              Hellmuth Lab<br />
+              Experimental Leukemia and Lymphoma Research (ELLF)<br />
+              Max-Lebsche-Platz 30<br />
+              81377 Munich
+            </address>
+          </section>
+        </div>
+        <div class="meta">
+          <span>© 2026 Hellmuth Lab</span>
+          <a href="/impressum/">Impressum</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="https://github.com/hellmuthlab" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

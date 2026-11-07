@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import sections from '../data/protocol-sections.json';
+
+const sectionLabel = Object.fromEntries(sections.map((s) => [s.slug, s.label]));
+const protocols = (
+  await getCollection('docs', (e) => e.id.startsWith('protocols/') && !/\/index\.mdx?$/.test(e.filePath ?? '') && !e.data.draft)
+).sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+<Base>
+  <section class="hero">
+    <h1>Non-coding Cancer Biology</h1>
+    <p class="lead">
+      The Non-Coding Genome plays a fundamental role in human disease including cancer. Our goal is to gain a
+      deeper understanding of the cancer genome’s regulatory circuitry to identify specific vulnerabilities within
+      the non-coding genome of cancer cells.
+    </p>
+  </section>
+
+  <h2 class="kicker">Research</h2>
+  <p>
+    How do changes in epigenetic, transcriptional and regulatory networks facilitate malignant transformation
+    and cancer? By answering this fundamental question we aim to build novel and highly personalized
+    treatments and develop early detection strategies of malignant and pre-malignant states.
+  </p>
+
+  <h2 class="kicker">Methods</h2>
+  <p>
+    We use novel CRISPR tools to understand the regulatory circuitry and non-coding genome of cancer cells. This
+    includes nuclease-dead CRISPR systems linked to a broad array of effectors as well as novel RNA-targeting CRISPR
+    systems ideally suited to tackle the non-coding transcriptome.
+  </p>
+
+  {protocols.length > 0 && (
+    <>
+      <h2 class="kicker">Protocols</h2>
+      <ul class="plist">
+        {protocols.map((p) => (
+          <li>
+            <a href={`/${p.id}/`}>{p.data.title}</a>
+            <span class="plist__sec">{sectionLabel[p.id.split('/')[1]]}</span>
+          </li>
+        ))}
+      </ul>
+      <p><a href="/protocols/">All protocols →</a></p>
+    </>
+  )}
+
+  <h2 class="kicker">About this site</h2>
+  <p>
+    Modern cancer research relies on an ever growing arsenal of advanced methods and datasets. Openly sharing these
+    resources enhances reproducibility, accelerates dissemination of new knowledge and promotes new discoveries – all
+    of which serve the ultimate goal of improving cancer outcomes. Along these lines, this website aims to make all
+    our resources including code, protocols and data fully available to the research community.
+  </p>
+
+  <h2 class="kicker">Affiliations &amp; funding</h2>
+  <p>
+    As a Junior Clinical Cooperation Unit (CCU) of the <a href="https://www.dktk.org" rel="noopener">DKTK</a> partner
+    site Munich, we are part of the <a href="https://www.dkfz.de/en" rel="noopener">DKFZ</a> Network. At the LMU Munich,
+    we are part of the <a href="https://www.med.lmu.de/pathologie/en/" rel="noopener">Institute of Pathology</a>. Our
+    lab is currently based at the Lab for Experimental Leukemia and Lymphoma Research (ELLF) of the <a href="https://www.lmu-klinikum.de/innere-medizin-3" rel="noopener">Department of Medicine III</a>.
+  </p>
+</Base>

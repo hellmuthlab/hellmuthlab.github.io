@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Base from '../../layouts/Base.astro';
+import Email from '../../components/Email.astro';
+import members from '../../data/members.json';
+
+// One profile per file in src/data/profiles/. To give another member a page:
+// copy johannes-hellmuth.json, rename it, and add "slug": "<file name>" to that person in members.json.
+const portraits = import.meta.glob<{ default: ImageMetadata }>('../../assets/team/*.{jpg,jpeg,png,webp}', { eager: true });
+
+export function getStaticPaths() {
+  // (getStaticPaths runs in its own scope, so the glob has to live inside it)
+  const profiles = import.meta.glob<{ default: any }>('../../data/profiles/*.json', { eager: true });
+  return members.people
+    .filter((p) => (p as any).slug && profiles[`../../data/profiles/${(p as any).slug}.json`])
+    .map((p) => ({
+      params: { slug: (p as any).slug },
+      props: { profile: profiles[`../../data/profiles/${(p as any).slug}.json`].default },
+    }));
+}
+
+const { profile } = Astro.props;
+const photo = profile.photo ? portraits[`../../assets/team/${profile.photo}`]?.default : undefined;
+---
+<Base title={profile.name} description={profile.description}>
+  <p class="crumb"><a href="/team/">← Back to the team</a></p>
+
+  <header class="profile-hero">
+    <div class="profile-hero__text">
+      <h1>{profile.name}</h1>
+      <p class="lead">{profile.subtitle.map((l: string, i: number) => <>{i > 0 && <br />}{l}</>)}</p>
+    </div>
+    {photo && (
+      <Image class="profile-hero__photo" src={photo} alt={`Portrait of ${profile.name}`} widths={[280, 560]} sizes="14rem" loading="eager" />
+    )}
+  </header>
+
+  <h2 class="section-title">About</h2>
+  <div class="prose">
+    {profile.about.map((t: string) => <p>{t}</p>)}
+  </div>
+
+  <h2 class="section-title">Career and research training</h2>
+  <ol class="timeline">
+    {profile.career.map((c: any) => (
+      <li>
+        <p class="timeline__date">{c.dates}</p>
+        <h3>{c.title}</h3>
+        <p class="timeline__place">{c.place}</p>
+      </li>
+    ))}
+  </ol>
+
+  <h2 class="section-title">Qualifications</h2>
+  <ul class="facts">
+    {profile.qualifications.map((q: any) => <li><strong>{q.year}</strong><span>{q.text}</span></li>)}
+  </ul>
+
+  <h2 class="section-title">Selected awards and fellowships</h2>
+  <ul class="facts">
+    {profile.awards.map((q: any) => <li><strong>{q.year}</strong><span>{q.text}</span></li>)}
+  </ul>
+
+  <h2 class="section-title">Selected publications</h2>
+  <ol class="pubs">
+    {profile.publications.map((p: any) => (
+      <li>
+        <p class="pubs__journal">{p.journal}</p>
+        <h3><a href={`https://doi.org/${p.doi}`} rel="noopener">{p.title}</a></h3>
+        <p>{p.summary}</p>
+        <p class="pubs__authors">{p.authors}</p>
+      </li>
+    ))}
+  </ol>
+
+  <h2 class="section-title">Contact and professional profiles</h2>
+  <p>
+    Email: <Email user={profile.email.user} domain={profile.email.domain} />
+  </p>
+  <ul class="linkbar">
+    {profile.links.map((l: any) => <li><a class="button" href={l.url} rel="noopener">{l.label}</a></li>)}
+  </ul>
+</Base>

@@ -1,0 +1,41 @@
+{
+  "people": [
+    {
+      "name": "Johannes C. Hellmuth, MD",
+      "role": "Junior Group Leader, Clinical Cooperation Unit Non-Coding Cancer Biology",
+      "group": "pi",
+      "photo": "johannes-hellmuth.jpg",
+      "slug": "johannes-hellmuth"
+    },
+    {
+      "name": "Daniel Diecke",
+      "role": "PhD Student (Dr. rer. nat.)",
+      "group": "current",
+      "photo": null
+    },
+    {
+      "name": "Leo Kemmler",
+      "role": "Medical Doctoral Student (Dr. med.)",
+      "group": "current",
+      "photo": null
+    },
+    {
+      "name": "Amelie Jungwirth",
+      "role": "Medical Doctoral Student (Dr. med.)",
+      "group": "current",
+      "photo": null
+    },
+    {
+      "name": "Letisa Derveni",
+      "role": "Master's Student (Internship)",
+      "group": "alumni",
+      "photo": null
+    },
+    {
+      "name": "Renee Asoro",
+      "role": "Master's Student (Internship)",
+      "group": "alumni",
+      "photo": null
+    }
+  ]
+}

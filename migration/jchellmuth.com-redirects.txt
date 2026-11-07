@@ -1,0 +1,17 @@
+# Redirects for jchellmuth.com -> hellmuthlab.org  (Netlify "_redirects" format)
+# Use these once jchellmuth.com is hosted on Netlify (GitHub Pages cannot send real 301 redirects).
+# Keep this file as the checklist of what moved where.
+
+# Tutorials
+/posts/FACS-with-R/                                                   https://hellmuthlab.org/code/facs-with-r/   301
+/news/code/ggplot/visualization/tutorial/2020/01/03/3C-arc-plot.html  https://hellmuthlab.org/code/3c-arc-plot/    301
+/code/                                                                https://hellmuthlab.org/code/               301
+
+# Downloads and code notebooks
+/downloads/2020-07-08-FACS-data.zip        https://hellmuthlab.org/downloads/2020-07-08-FACS-data.zip        301
+/downloads/2020-01-03-3C-dummy-data.txt    https://hellmuthlab.org/downloads/2020-01-03-3C-dummy-data.txt    301
+/html/*                                    https://hellmuthlab.org/resources/mol-cell-2020/:splat            301
+
+# Not moved (stays on jchellmuth.com): /recipes/, /cooking/, personal pages
+# Not moved on purpose: "Posting Rmarkdowns to your Jekyll website" (no longer relevant),
+#   FACS tutorial v1 (/draft/FACS-with-R-v1/), the Mol Cell PDF (publisher copyright)

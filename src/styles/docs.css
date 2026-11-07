@@ -1,0 +1,79 @@
+/* ---------- Docs area (protocols + lab manual): Starlight tweaks ---------- */
+.site-title img { height: 2.1rem; width: auto; }
+.sl-markdown-content h1, h1#_top {
+  font-family: var(--font-display);
+  font-weight: var(--h1-weight, 400);
+}
+.sl-markdown-content table { display: table; width: 100%; font-size: 0.95em; }
+.sl-markdown-content th, .sl-markdown-content td { text-align: left; }
+
+/* ---------- Protocol tools ---------- */
+.bench-tools {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  position: sticky; top: var(--sl-nav-height, 3.5rem); z-index: 5;
+  padding: 0.6rem 0; background: var(--sl-color-bg, var(--bg)); border-bottom: 1px solid var(--sl-color-hairline, var(--border));
+  margin-bottom: 1rem;
+}
+.bench-tools button {
+  font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  padding: 0.5rem 0.9rem; border-radius: 0.5rem; min-height: 2.75rem;
+  border: 1px solid var(--sl-color-accent, var(--navy));
+  background: transparent; color: var(--sl-color-text, var(--text));
+}
+.bench-tools button[aria-pressed='true'] { background: var(--sl-color-accent, var(--navy)); color: #fff; }
+.bench-status { font-size: 0.85rem; color: var(--sl-color-gray-3, var(--text-muted)); }
+
+/* Task-list checkboxes: big enough for gloved/iPad use */
+.sl-markdown-content ul.contains-task-list { list-style: none; padding-inline-start: 0; }
+.sl-markdown-content li.task-list-item { display: flex; gap: 0.7rem; align-items: flex-start; }
+.sl-markdown-content input[type='checkbox'] { width: 1.4rem; height: 1.4rem; margin-top: 0.2rem; flex: none; accent-color: var(--navy); }
+.sl-markdown-content li.task-list-item:has(input:checked) { opacity: 0.55; }
+
+/* ---------- Bench mode: no chrome, wide, big type ---------- */
+html.bench {
+  --sl-content-width: 64rem;
+  --sl-content-inline-start: 0px;
+  --sl-sidebar-width: 0px;
+  --sl-text-body: 1.2rem;
+}
+html.bench header.header,
+html.bench .sidebar-pane,
+html.bench .right-sidebar-container,
+html.bench starlight-menu-button,
+html.bench mobile-starlight-toc,
+html.bench .pagination-links,
+html.bench footer { display: none !important; }
+html.bench .main-frame { padding-top: 0; }
+html.bench .bench-tools { top: 0; }
+html.bench .sl-markdown-content table { font-size: 1.05rem; }
+
+/* ---------- Print (browser "Save as PDF") ---------- */
+@page { margin: 14mm; }
+@media print {
+  :root { --sl-nav-height: 0px; --sl-sidebar-width: 0px; --sl-content-inline-start: 0px; --sl-content-width: 100%; }
+  body { font-size: 10pt; color: #000; background: #fff; }
+  header.header, .sidebar-pane, .right-sidebar-container, starlight-menu-button,
+  mobile-starlight-toc, .pagination-links, footer, .bench-tools { display: none !important; }
+  .main-frame { padding: 0 !important; }
+  .sl-markdown-content table { page-break-inside: avoid; font-size: 9pt; }
+  .sl-markdown-content h2, .sl-markdown-content h3 { page-break-after: avoid; }
+  .sl-markdown-content a { color: #000; text-decoration: none; }
+  .sl-markdown-content input[type='checkbox'] { appearance: auto; }
+  h1#_top::after {
+    content: 'Hellmuth Lab · hellmuthlab.org';
+    display: block; font: 400 8pt var(--font-body); letter-spacing: 0; text-transform: none; color: #555; margin-top: 0.3rem;
+  }
+}
+
+/* ---------- Sidebar colours (option A: current page filled deep violet) ---------- */
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover { background-color: var(--violet-deep); color: #fff; font-weight: 600; }
+.sidebar-content a:not([aria-current='page']):hover { color: var(--accent); }
+.sidebar-content summary { color: var(--kicker); }
+/* "On this page" list and in-text links: deep-violet hover / current */
+starlight-toc a[aria-current='true'], starlight-toc a:hover { color: var(--accent); }
+.sl-markdown-content a:hover { color: var(--accent); }
+
+/* "On this page" (right): only on longer pages. Hidden when a page has fewer than 4 top-level headings.
+   Force it off on a page with `tableOfContents: false` in the front matter. */
+.right-sidebar-container:not(:has(starlight-toc li:nth-child(4))) { display: none; }

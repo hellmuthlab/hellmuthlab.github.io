@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import pubs from '../data/publications.json';
+---
+<Base title="Publications" description="Publications of the Hellmuth Lab.">
+  <h1>Publications</h1>
+
+  <p>Complete, always up-to-date lists are maintained at:</p>
+  <ul class="linkbar">
+    <li><a class="button" href="https://scholar.google.com/citations?hl=de&user=voIBaRUAAAAJ" rel="noopener">Google Scholar</a></li>
+    <li><a class="button" href="https://www.ncbi.nlm.nih.gov/myncbi/1pUmA1takio5y/bibliography/public/" rel="noopener">NCBI bibliography</a></li>
+    <li><a class="button" href="https://orcid.org/0000-0001-8409-3037" rel="noopener">ORCID</a></li>
+  </ul>
+
+  {pubs.length === 0 ? (
+    <p class="placeholder">Selected publications will be listed here (edit <code>src/data/publications.json</code>).</p>
+  ) : (
+    <ol>
+      {pubs.map((p: any) => (
+        <li>
+          <strong>{p.title}</strong><br />
+          {p.authors}. <em>{p.journal}</em> {p.year}. {p.doi && <a href={`https://doi.org/${p.doi}`} rel="noopener">doi:{p.doi}</a>}
+        </li>
+      ))}
+    </ol>
+  )}
+</Base>

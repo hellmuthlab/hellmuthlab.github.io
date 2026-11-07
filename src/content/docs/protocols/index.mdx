@@ -1,0 +1,17 @@
+---
+title: Protocols
+description: Bench protocols of the Hellmuth Lab.
+tableOfContents: false
+---
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+import sections from '../../../data/protocol-sections.json';
+
+Our bench protocols, sorted by topic. On a tablet, use **Bench mode** at the top of a protocol for a distraction-free
+full-screen view with tick boxes. **Print / PDF** gives a clean printout.
+
+<CardGrid>
+  {sections.map((s) => (
+    <LinkCard title={s.label} href={`/protocols/${s.slug}/`} />
+  ))}
+</CardGrid>

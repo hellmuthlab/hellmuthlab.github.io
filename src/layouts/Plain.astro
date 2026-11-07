@@ -1,0 +1,47 @@
+---
+// Deliberately plain layout for the legal pages (Impressum, Datenschutz):
+// black on white, system font, no lab branding.
+interface Props { title: string; description?: string }
+const { title, description = '' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <p class="nav"><a href="/">← Hellmuth Lab</a></p>
+    <main>
+      <slot />
+    </main>
+    <p class="nav">
+      <a href="/impressum/">Impressum</a> · <a href="/privacy/">Datenschutz / Privacy</a>
+    </p>
+  </body>
+</html>
+
+<style is:global>
+  html { color-scheme: light; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+    max-width: 42rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  h1 { font-size: 1.6rem; margin: 1.5rem 0 1rem; }
+  h2 { font-size: 1.3rem; margin: 2.5rem 0 0.5rem; padding-top: 1rem; border-top: 1px solid #000; }
+  h3 { font-size: 1.05rem; margin: 1.5rem 0 0.25rem; }
+  p { margin: 0.5rem 0; }
+  address { font-style: normal; margin: 0.5rem 0; }
+  a { color: #000; text-decoration: underline; }
+  .nav { font-size: 0.9rem; }
+  main + .nav { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #000; }
+</style>

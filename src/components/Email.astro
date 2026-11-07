@@ -1,0 +1,13 @@
+---
+// Builds the mailto link in the browser so simple scrapers don't see the address.
+interface Props { user: string; domain: string; label?: string }
+const { user, domain, label } = Astro.props;
+---
+<a class="obf-mail" href="#" data-u={user} data-d={domain} data-label={label ?? ''}>{user} (at) {domain}</a>
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('a.obf-mail').forEach((a) => {
+    const addr = `${a.dataset.u}@${a.dataset.d}`;
+    a.href = `mailto:${addr}`;
+    a.textContent = a.dataset.label || addr;
+  });
+</script>
