@@ -7,6 +7,7 @@ import members from '../../data/members.json';
 
 // One profile per file in src/data/profiles/. To give another member a page:
 // copy johannes-hellmuth.json, rename it, and add "slug": "<file name>" to that person in members.json.
+const pubImages = import.meta.glob<{ default: ImageMetadata }>('../../assets/publications/*.{jpg,jpeg,png,webp}', { eager: true });
 const portraits = import.meta.glob<{ default: ImageMetadata }>('../../assets/team/*.{jpg,jpeg,png,webp}', { eager: true });
 
 export function getStaticPaths() {
@@ -64,21 +65,29 @@ const photo = profile.photo ? portraits[`../../assets/team/${profile.photo}`]?.d
 
   <h2 class="section-title">Selected publications</h2>
   <ol class="pubs">
-    {profile.publications.map((p: any) => (
-      <li>
-        <p class="pubs__journal">{p.journal}</p>
-        <h3><a href={`https://doi.org/${p.doi}`} rel="noopener">{p.title}</a></h3>
-        <p>{p.summary}</p>
-        <p class="pubs__authors">{p.authors}</p>
-      </li>
-    ))}
+    {profile.publications.map((p: any) => {
+      const img = p.image ? pubImages[`../../assets/publications/${p.image}`]?.default : undefined;
+      return (
+        <li class={img ? 'pub' : 'pub pub--noimg'}>
+          {img && <Image class="pub__img" src={img} alt={`Graphical abstract: ${p.title}`} widths={[240, 480]} sizes="12rem" />}
+          <div>
+            <p class="pubs__journal">{p.journal}</p>
+            <p class="pubs__by">{p.authors}</p>
+            <h3><a href={`https://doi.org/${p.doi}`} rel="noopener">{p.title}</a></h3>
+            <p>{p.summary}</p>
+          </div>
+        </li>
+      );
+    })}
   </ol>
 
-  <h2 class="section-title">Contact and professional profiles</h2>
-  <p>
-    Email: <Email user={profile.email.user} domain={profile.email.domain} />
-  </p>
+  <h2 class="section-title">Full list of publications</h2>
   <ul class="linkbar">
     {profile.links.map((l: any) => <li><a class="button" href={l.url} rel="noopener">{l.label}</a></li>)}
   </ul>
+
+  <h2 class="section-title">Contact</h2>
+  <p>
+    Email: <Email user={profile.email.user} domain={profile.email.domain} />
+  </p>
 </Base>

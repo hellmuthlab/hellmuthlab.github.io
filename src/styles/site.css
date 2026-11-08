@@ -202,7 +202,7 @@ main h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
 @media (max-width: 40rem) { .facts li { grid-template-columns: 1fr; } }
 
 .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; max-width: 52rem; }
-.pubs h3 { margin: 0.2rem 0 0.4rem; font-size: 1.05rem; }
+.pubs h3 { margin: 0.2rem 0 0.4rem; font-size: 1.05rem; line-height: 1.5; }
 .pubs p { margin: 0.25rem 0 0; }
 .pubs__journal { font-family: var(--font-display); font-size: 0.72rem; color: var(--kicker); }
 .pubs__authors { color: var(--text-muted); font-size: 0.88rem; }
@@ -268,3 +268,16 @@ main h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
 :root[data-theme='dark'] .prose .expressive-code .frame { background: #232447; }
 :root[data-theme='dark'] .prose .expressive-code pre { color: #e8e9ef; }
 :root[data-theme='dark'] .prose .expressive-code .code span { color: var(--0); }
+
+/* publication thumbnails on profile pages */
+.pub { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: 0.5rem 1.5rem; align-items: start; }
+.pub--noimg { grid-template-columns: 1fr; }
+.pub__img { width: 100%; height: auto; border-radius: 0.5rem; background: #fff; display: block; }
+@media (max-width: 40rem) { .pub { grid-template-columns: 1fr; } .pub__img { max-width: 16rem; } }
+.pubs__by { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: 0.85rem; color: var(--text-muted); }
+
+/* thin rules separate the highlighted publications */
+.pubs { gap: 0; }
+.pubs > li { padding-block: 1.25rem; border-top: 1px solid var(--border); }
+.pubs > li:first-child { border-top: 0; padding-top: 0; }
+.pubs > li:last-child { padding-bottom: 0; }

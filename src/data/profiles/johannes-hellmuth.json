@@ -61,32 +61,20 @@
   ],
   "publications": [
     {
-      "journal": "Molecular Cell · 2020",
+      "journal": "Mol Cell · 2020",
       "title": "Unique immune cell coactivators specify locus control region function and cell stage",
       "doi": "10.1016/j.molcel.2020.10.036",
-      "summary": "CRISPRi screening of the BCL6 super-enhancer identified the essential elements and the cell-type-specific factors that drive this proto-oncogenic locus.",
-      "authors": "Chu*, Hellmuth* et al., Melnick, Roeder (* equal contribution)"
+      "summary": "Our results demonstrate how an intimately linked complex of lineage- and stage-specific factors converges on specific and highly essential enhancer elements to drive the function of a cell-type defining LCR.",
+      "authors": "Chu and Hellmuth et al.",
+      "image": "mol-cell-2020.jpeg"
     },
     {
       "journal": "Blood · 2018",
       "title": "Duodenal-type and nodal follicular lymphomas differ by their immune microenvironment rather than their mutation profiles",
       "doi": "10.1182/blood-2018-03-837252",
-      "summary": "Molecular characterization of a distinct follicular lymphoma subtype; cited by the WHO classification of haematolymphoid tumours.",
-      "authors": "Hellmuth*, Louissaint* et al., Hiddemann, Klapper, Weigert (* equal contribution)"
-    },
-    {
-      "journal": "Nature Immunology · 2021",
-      "title": "OCT2 pre-positioning facilitates cell fate transition and chromatin architecture changes in humoral immunity",
-      "doi": "10.1038/s41590-021-01025-w",
-      "summary": "OCT2 is pre-positioned at silent regions that become germinal-center super-enhancers, enabling rapid cell fate transition.",
-      "authors": "Doane, Chu, Di Giammartino, Rivas, Hellmuth et al., Roeder, Apostolou, Melnick, Elemento"
-    },
-    {
-      "journal": "BBA – Molecular Basis of Disease · 2023",
-      "title": "Proteomics reveals antiviral host response and NETosis during acute COVID-19 in high-risk patients",
-      "doi": "10.1016/j.bbadis.2022.166592",
-      "summary": "Plasma proteomics and deep clinical phenotyping in a large cohort from the CORKUM study.",
-      "authors": "Bauer*, Pachl*, Hellmuth* et al., Schubert, Hilgendorff (* equal contribution)"
+      "summary": "Duodenal-type follicular lymphoma (DTFL) is a rare and highly indolent follicular lymphoma (FL) variant. Comparative molecular characterization of DTFL to typical FL revealed distinct pathogenic mechanisms.",
+      "authors": "Hellmuth and Louissaint et al.",
+      "image": "blood-2018.jpeg"
     }
   ],
   "links": [
