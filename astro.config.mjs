@@ -54,7 +54,7 @@ export default defineConfig({
           collapsed: true,   // only the group you are currently in stays open
           items: [
             { label: 'Lab manual home', link: '/lab-manual/' },
-            { label: 'Onboarding', collapsed: true, items: [{ autogenerate: { directory: 'lab-manual/onboarding' } }] },
+            { label: 'Onboarding', link: '/lab-manual/onboarding/' },
             { label: 'Organization & inventory', collapsed: true, items: [{ autogenerate: { directory: 'lab-manual/organization' } }] },
           ],
         },
