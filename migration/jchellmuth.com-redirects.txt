@@ -14,7 +14,7 @@
 /html/*                                  https://hellmuthlab.org/resources/mol-cell-2020/:splat          301!
 
 # --- Publications ---
-/publications/   https://hellmuthlab.org/publications/               301!
+/publications/   https://hellmuthlab.org/team/johannes-hellmuth/   301!
 /pdfs/*          https://pubmed.ncbi.nlm.nih.gov/33232656/            301!
 
 # --- Short links that already pointed elsewhere ---

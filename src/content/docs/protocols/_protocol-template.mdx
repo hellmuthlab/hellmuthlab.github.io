@@ -1,31 +1,70 @@
 ---
 # TEMPLATE: copy this file into a section folder (e.g. protocols/gene-expression/),
 # rename it (e.g. qpcr.mdx) and fill it in. Files starting with "_" are never published.
+# Version, authors and dates are shown under the title automatically, together with the bench toolbar.
 title: Name of the protocol
 description: One sentence about what the protocol does.
-# draft: true      # remove the "#" to keep the page off the live site until it is ready
-# tableOfContents: false   # hide the “On this page” list on the right (it is hidden automatically on short pages)
+version: "1.0"                 # use quotes, so that e.g. "1.10" stays 1.10
+authors: [AB, JCH]             # initials; lab members' full names are shown on hover (from src/data/members.json)
+# firstPosted: 2026-01-31      # set when the page first goes live
+lastUpdated: 2026-01-31        # update with every new version
+draft: true                    # delete this line when the page is ready to go live
+# tableOfContents: false       # hide the “On this page” list on the right
 # sidebar:
-#   order: 1       # optional: position in the sidebar (default: alphabetical)
+#   order: 1                   # optional: position in the sidebar (default: alphabetical)
 ---
 
-import BenchTools from '../../../components/BenchTools.astro';
+## Overview
 
-<BenchTools />
+What the protocol is for, the main steps, and how long it takes (hands-on time and total time).
 
-**Version 1.0** · Author: Your Name
+:::caution[Safety]
+Hazards and required protection, e.g. BSL-2 work, toxic reagents.
+:::
 
-## Materials
+<details>
+<summary>Materials</summary>
 
-- Item 1
-- Item 2
+| Reagent / consumable | Supplier | Cat. no. |
+|---|---|---|
+| Reagent 1 | | |
+
+- **Equipment:** anything that is not a consumable.
+
+</details>
+
+{/* Optional, same pattern: <details><summary>General remarks</summary> … </details> */}
+{/* Optional, same pattern: <details><summary>Timeline</summary> … </details> */}
 
 ## Procedure
 
-- [ ] Step 1
-- [ ] Step 2
-- [ ] Step 3
+- [ ] **1.** Step 1
+- [ ] **2.** Step 2
 
-## Notes
+:::tip
+Pause point: the sample can be stored at −20 °C overnight.
+:::
 
-- Anything worth remembering.
+## Buffers and recipes
+
+- [TBS-T](/protocols/buffers-and-recipes/tbst/)
+
+## Notes and troubleshooting
+
+- Anything worth remembering, including simple media or mixes that don't need their own recipe page.
+
+## References & Credit
+
+Adapted from the Melnick lab protocol *Name* (version, author).
+
+1. Manufacturer. *Title of the protocol or manual* (document no. / version). [URL](https://example.com), accessed 2026-01-31.
+2. Authors (year). Title. *Journal*. [doi:10.xxxx/xxxxx](https://doi.org/10.xxxx/xxxxx)
+
+<details>
+<summary>Version history</summary>
+
+| Version | Date | Changes |
+|---|---|---|
+| 1.0 | 2026-01-31 | First version. |
+
+</details>

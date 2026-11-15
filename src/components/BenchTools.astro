@@ -28,6 +28,8 @@
     box.addEventListener('change', () => { ticks[i] = box.checked; save(); });
   });
   reset?.addEventListener('click', () => { ticks = {}; boxes.forEach((b) => (b.checked = false)); save(); });
+  // Protocols without tick boxes (e.g. short ones) don't need the reset button
+  if (reset && boxes.length === 0) reset.hidden = true;
 
   // ---- keep the screen awake while in bench mode ----
   let lock: { release: () => Promise<void> } | null = null;

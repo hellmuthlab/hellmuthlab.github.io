@@ -34,6 +34,8 @@ export default defineConfig({
         replacesTitle: true,
       },
       favicon: '/favicon.svg',
+      // Protocol pages: version / authors / dates line and bench toolbar under the title
+      components: { PageTitle: './src/components/PageTitle.astro' },
       customCss: [
         '@fontsource-variable/open-sans',
         './src/styles/brand.css',

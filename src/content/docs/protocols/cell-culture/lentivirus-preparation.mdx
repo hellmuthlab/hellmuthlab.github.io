@@ -1,45 +1,61 @@
 ---
 title: Lentivirus preparation
-description: Production of lentiviral supernatant in HEK293T cells (v1.1).
-draft: true
+description: Production and concentration of lentiviral supernatant in HEK293T cells.
+version: "1.4"
+authors: [LK, DD, JCH]
+firstPosted: 2026-11-15
+lastUpdated: 2026-11-15
 ---
 
-import BenchTools from '../../../../components/BenchTools.astro';
+:::danger[Biosafety level 2 (S2)]
+Work with lentivirus is **biosafety level 2 (S2)** work and requires training before you start.
 
-<BenchTools />
+- **Theoretical training** is given by the *Projektleiter* (OW).
+- **Practical training** and oversight of the S2 lab are the responsibility of the ELLF *Sicherheitsbeauftragter* (MH).
 
-**Version 1.1** · Author: Johannes C. Hellmuth
-
-:::caution[DRAFT – please check before publishing (this box and the draft flag are removed afterwards)]
-This page was converted from the PDF “Lentivirus preparation v1.1”. A few values looked like unit typos and were corrected as listed below; please confirm each against your bench notes.
-
-- 96-well total DNA: PDF says 96 µg → set to **96 ng** (12 + 36 + 48 ng).
-- 10 cm “low intensity I” total DNA: PDF says 8 µl → set to **8 µg** (1 + 3 + 4 µg).
-- 6-fold mastermix Optimem: PDF says 750 ng → set to **750 µl** (6 × 125 µl).
-- 6-fold TransIT mastermix cells were empty → filled with **43.2 µl** TransIT and **750 µl** Optimem (6 × 7.2 µl and 6 × 125 µl).
-- Filter: PDF says “45 µm” → set to **0.45 µm**. Is that what the yellow filters are?
-- Plasmid name: PDF alternates between pMD2.G and psMD2.G → unified to **pMD2.G**.
-- Medium change: PDF says “high-BSA or high-FBS (20%)” – BSA or FBS?
-- PEG-it: “add 5x PEG-it to SN” – is that one volume of 5x PEG-it per four volumes of supernatant?
-- Personal names removed for the public site: “Coraline's protocol” → “in-house protocol”, “Dylan's bench” → “filter shelf (location to be added)”.
-- The Broad PDF attachment is linked, not re-hosted.
+Always follow our SOP and all applicable regulations.
 :::
 
-## Day 1 — Plating
 
-The protocol below mainly follows the RNAi Consortium (TRC) / Broad Institute protocol for lentivirus production. That protocol is very detailed and, judging by its version notes, has been continuously optimized. It is available at the [Broad GPP portal](https://portals.broadinstitute.org/gpp/public/resources/protocols) (*TRC shRNA sgRNA ORF Low Throughput Viral Production, 2015-06*).
+<details>
+<summary>Materials</summary>
 
-**General remarks**
+| Reagent / consumable | Supplier | Cat. no. |
+|---|---|---|
+| TransIT-LT1 Transfection Reagent | Mirus Bio | MIR 2300 |
+| Opti-MEM I Reduced-Serum Medium | Gibco | 31985070 |
+| Syringe filter, 0.45 µm (yellow) | Millipore | SLHV033RS |
+| psPAX2 (EX02), packaging plasmid | Addgene | 12260 |
+| pMD2.G (EX01), envelope plasmid | Addgene | 12259 |
+| 4× Lentivirus Concentrator Solution | in-house | [recipe](/protocols/buffers-and-recipes/lentivirus-concentrator/) |
 
-- Lentivirus collected at day 2 after infection is more potent than lentivirus collected at day 3.
-- To speed up the procedure, HEK293T cells can also be transfected in the morning. The first media change (to high FBS) is performed in the evening of the same day, and the lentivirus supernatant is collected the following day.
-- For large-scale preps (10 cm dish and above), transfection reagents like Lipofectamine, FuGENE or TransIT become too expensive. Unless efficiency has to be maximized (e.g. for large transfer vectors like Cas9 constructs), use PEI or calcium-phosphate transfection instead.
+- **HEK293T standard medium:** DMEM, 10 % FBS, 1 % P/S
+- **HEK293T virus-production medium:** DMEM, 20 % FBS, 1 % P/S
 
-**Plating**
+</details>
 
-- 48-well: plate 0.6×10<sup>5</sup> HEK293T in 0.3 ml DMEM (cell suspension at 2×10<sup>5</sup>/ml)
-- 6-well: plate 5×10<sup>5</sup> HEK293T in 2.5 ml DMEM (cell suspension at 2×10<sup>5</sup>/ml)
-- 10 cm dish: plate 3×10<sup>6</sup> HEK293T in 10 ml (cell suspension at 3×10<sup>5</sup>/ml)
+<details>
+<summary>Timeline</summary>
+
+Transfection can be performed 12–24 h after plating, which gives two workable schedules. From the medium change onwards both are identical.
+
+| Step | Option A (12 h) | Option B (24 h) |
+|---|---|---|
+| Plating | Day 1, 8AM | Day 1, 8AM |
+| Transfection | Day 1, 8 PM | Day 2, 8AM |
+| Medium change | Day 2, 8 AM | Day 2, 8PM |
+| Collect supernatant 1 (SN1) | Day 3 | Day 3 |
+| Collect supernatant 2 (SN2)| Day 4 | Day 4 |
+
+In a fast-paced experiment, you could use your first supernatant (SN1) to directly transduce cells.
+With option A this means going from HEK293T plating to transduction in 48h.  
+
+</details>
+
+## Plating (day 1)
+
+HEK293T cells are generally plated at 2×10<sup>5</sup>/ml.  
+The exception are 10cm dishes where we reduce the culture volume from the usual 15ml to 10ml to reduce the amount of transfection reagent, bringing the concentration to 3×10<sup>5</sup>/ml.
 
 | | 96-well (0.35 cm²) | 48-well (0.9 cm²) | 24-well (1.9 cm²) | 12-well (3.8 cm²) | 6-well (9.6 cm²) | 10 cm dish (59 cm²) |
 |---|---|---|---|---|---|---|
@@ -47,122 +63,210 @@ The protocol below mainly follows the RNAi Consortium (TRC) / Broad Institute pr
 | Cell number | 0.2×10<sup>5</sup> | 0.6×10<sup>5</sup> | 1.2×10<sup>5</sup> | 2.4×10<sup>5</sup> | 5×10<sup>5</sup> | 3×10<sup>6</sup> |
 | Cell suspension | 2×10<sup>5</sup>/ml | 2×10<sup>5</sup>/ml | 2×10<sup>5</sup>/ml | 2×10<sup>5</sup>/ml | 2×10<sup>5</sup>/ml | 3×10<sup>5</sup>/ml |
 
-- [ ] Cells plated
+:::tip[Seeding density depends on time to transfection]
+Aim for a confluency around 80 % at transfection. Seeding density may have to be adjusted depending on time from plating to transfection. For example, for 96- to 6-well plates:
+- **~24 h**: plate at ~2×10<sup>5</sup>/ml.
+- **~12 h**: plate at the higher density, ~3×10<sup>5</sup>/ml.
+:::
 
-## Day 2 — Transfection
+## Transfection (day 1 evening or day 2 morning)
+Confluency should be around 80 % at transfection. Use the EVOS M3000 to objectively measure confluency and document this in your lab notebook.
+### Procedure
+We use TransIT-LT1 as a transfection reagent but adapt the protocol
+in that we usually prepare separate DNA and TransIT dilutions which are then mixed (as in the Lipofectamine 2000 protocol):
+1. Dilute the DNA in Optimem (half of the final volume, e.g. 125 µl for 6-well).
+2. Dilute TransIT in Optimem (half of the final volume, e.g. 125 µl for 6-well) and incubate for 5 min (max. 30 min).
+3. Combine both dilutions, mix gently and incubate at room temperature for 15–30 min.
+4. Apply the TransIT:DNA complexes to the cells drop-wise, to different areas of the well, and distribute by rocking the plate gently.
 
-The transfection protocol combines elements of the TransIT-LT1 manufacturer's protocol and the original Lipofectamine 2000 protocol, with these key points and changes:
+:::tip[Handling TransIT-LT1]
+- Warm TransIT-LT1 and Opti-MEM to room temperature before use, to maximize complex formation.
+- Vortex TransIT-LT1 gently before each use.
+- Do not let the reagent touch the wall of the plastic tube when adding it to the diluted DNA.
+:::
 
-- A 1:3:4 ratio of pMD2.G : psPAX2 : transfer vector is used, as suggested by an in-house protocol and the Addgene protocol for pLKO.1 (#10878).
-- The amounts of DNA and transfection reagent for 10 cm dishes are reduced compared to the manufacturer's protocol (i.e. not scaled up proportionally from 6-well). This reduction was suggested by the in-house protocol and may be feasible due to the reduced culture volume (10 ml vs 15 ml).
-- The total DNA (~100 ng) for the 96-well protocol with TransIT is taken from the TransIT manufacturer's protocol (1:3 ratio).
+### Amounts
+The DNA to TransIT-LT1 ratio is 1 µg : 3 µl.
+The standard pMD2.G : psPAX2 : transfer vector ratio is 1:3:4.
+The 10 cm dish amounts here deviate from the TransIT-LT1 protocol, because of the reduced culture volume we
+use at this step (10 ml instead of 15 ml).
+The reasoning behind these choices, and when to use something else, is in [Protocol notes and open questions](#protocol-notes-and-open-questions).
 
-| | 96-well (0.35 cm²) | 48-well (0.9 cm²) | 24-well (1.9 cm²) | 12-well (3.8 cm²) | 6-well (9.6 cm²) |
-|---|---|---|---|---|---|
-| pMD2.G (EX01) | 12 ng | 36 ng | 70 ng | 140 ng | 300 ng |
-| psPAX2 (EX02) | 36 ng | 108 ng | 210 ng | 420 ng | 900 ng |
-| transfer plasmid | 48 ng | 144 ng | 280 ng | 560 ng | 1200 ng |
-| **total DNA** | 96 ng | 288 ng | 560 ng | 1120 ng | 2.4 µg |
-| TransIT-LT1 | 0.3 µl | 0.9 µl | 1.8 µl | 3.6 µl | 7.2 µl |
-| Optimem (total) | 9 µl | 27 µl | 54 µl | 108 µl | 250 µl |
+| | 96-well (0.35 cm²) | 48-well (0.9 cm²) | 24-well (1.9 cm²) | 12-well (3.8 cm²) | 6-well (9.6 cm²) | 10 cm dish (59 cm²) |
+|---|---|---|---|---|---|---|
+| pMD2.G (EX01) | 12 ng | 36 ng | 70 ng | 140 ng | 300 ng | 1.25 µg |
+| psPAX2 (EX02) | 36 ng | 108 ng | 210 ng | 420 ng | 900 ng | 3.75 µg |
+| transfer plasmid | 48 ng | 144 ng | 280 ng | 560 ng | 1200 ng | 5 µg |
+| **total DNA** | 96 ng | 288 ng | 560 ng | 1120 ng | 2.4 µg | 10 µg |
+| TransIT-LT1 | 0.3 µl | 0.9 µl | 1.8 µl | 3.6 µl | 7.2 µl | 30 µl |
+| Optimem (total) | 9 µl | 27 µl | 54 µl | 108 µl | 250 µl | 1.5 ml |
 
-**10 cm dish protocols**
+### Mastermixes
 
-- For large transfer vectors, intensifying the transfection and/or changing the ratios can help (see below).
-- High intensity (45 µl TransIT) corresponds to the TransIT manufacturer's protocol.
-- Use a 1:3:6 ratio for large transfer vectors (e.g. Cas9 constructs).
-
-| | low intensity I (1:3:4) | low intensity II (1:3:6) | moderate intensity (1:3:4) | high intensity (1:3:4) | high intensity (1:3:6) |
-|---|---|---|---|---|---|
-| pMD2.G (EX01) | 1 µg | 1 µg | 1.5 µg | 1.9 µg | 1.5 µg |
-| psPAX2 (EX02) | 3 µg | 3 µg | 4.5 µg | 5.7 µg | 4.5 µg |
-| transfer plasmid | 4 µg | 6 µg | 6 µg | 7.6 µg | 9 µg |
-| **total DNA** | 8 µg | 10 µg | 12 µg | ~15 µg | 15 µg |
-| TransIT-LT1 | 24 µl | 30 µl | 36 µl | 45 µl | 45 µl |
-| Optimem (total) | 1.5 ml | 1.5 ml | 1.5 ml | 1.5 ml | 1.5 ml |
-
-**Procedure** (generally follows the original Lipofectamine 2000 protocol)
-
-- [ ] **1.** Dilute DNA in Optimem (half of the final volume, e.g. 125 µl for 6-well).
-- [ ] **2.** Dilute TransIT in Optimem (half of the final volume, e.g. 125 µl for 6-well) and incubate for 5 min (max. 30 min).
-- [ ] **3.** Combine both dilutions, mix gently and incubate at room temperature for 15–30 min.
-- [ ] **4.** Apply the TransIT:DNA complexes to the cells drop-wise, to different areas of the well, and distribute by rocking the plate gently.
-
-**Mastermixes** for steps 1 and 2 are usually set up as follows (6-well example):
+Mastermixes for steps 1 and 2 are usually set up as follows (6-well example):
 
 | DNA mastermix | 1-fold | 6-fold |
 |---|---|---|
 | psPAX2 | 900 ng | 5400 ng |
 | pMD2.G | 300 ng | 1800 ng |
-| transfer plasmid (pLKO) | 1200 ng | added to each virus individually |
+| transfer plasmid (pLKO) | 1200 ng | added to each condition individually |
 | Optimem | 125 µl | 750 µl |
 
-The DNA:Optimem mastermix for packaging and envelope plasmids is distributed to individual tubes (6-well: 125 µl per virus), and the indicated amount of transfer vector is added.
+The DNA:Optimem mastermix for packaging and envelope plasmids is distributed to individual tubes (6-well: 125 µl per condition), and the indicated amount of transfer vector is added.
 
 | TransIT mastermix | 1-fold | 6-fold |
 |---|---|---|
 | TransIT-LT1 | 7.2 µl | 43.2 µl |
 | Optimem | 125 µl | 750 µl |
 
-- [ ] After ~5 min incubation (max. 30 min) of the TransIT:Optimem mastermix, add the indicated amount (6-well: 125 µl) to each DNA:Optimem mix and incubate at room temperature for 15–30 min.
-- [ ] Add the TransIT:DNA:Optimem mix to the cells, distributing it as evenly as possible.
+5. After ~5 min incubation (max. 30 min) of the TransIT:Optimem mastermix, add the indicated amount (6-well: 125 µl) to each DNA:Optimem mix and incubate at room temperature for 15–30 min.
+6. Add the TransIT:DNA:Optimem mix to the cells, distributing it as evenly as possible.
 
-## Day 3 — Medium change
+## Medium change (day 2)
 
-- [ ] 12 h after transfection, change the medium to high-BSA or high-FBS (20 %) virus-production medium (volumes below).
+12–18 h after transfection, change the medium to virus-production medium (DMEM, 20 % FBS, 1 % P/S; volumes below).
 
 | | 96-well | 48-well | 24-well | 12-well | 6-well | 10 cm dish |
 |---|---|---|---|---|---|---|
 | Volume per supernatant change | 125 µl | 300 µl | 750 µl | 1.5 ml | 3 ml | 15 ml |
 | Final / total supernatant volume | 250 µl | 600 µl | 1.5 ml | 3 ml | 6 ml | 30 ml |
 
-## Day 4 — Collect supernatant 1
+## Collect supernatant 1 (day 3)
 
-- [ ] Transfer the supernatant (SN) to a collection tube (15 ml or 50 ml) and store at 4 °C.
-- [ ] Add fresh virus-production medium (**3 ml per 6-well, 15 ml per 10 cm dish**).
+1. Transfer the supernatant (SN1) to a collection tube (15 ml or 50 ml) and store at 4 °C.
+2. Replace with fresh virus-production medium.
 
-## Day 5 — Collect supernatant 2
+:::note
+SN1 usually has a higher titer than SN2.
+:::
 
-- [ ] Transfer the SN to the collection tube, pooling it with the day 4 SN.
-- [ ] Remove HEK293T cells, either by
-  - centrifugation at 3000 g for 15 min (4 °C) (taken from the Retro-Concentin protocol), or
-  - filtration through a 0.45 µm filter (location of the filters: to be added).
 
-At this point the lentivirus supernatant can be used for a “fresh infection” or concentrated with PEG-it.
+## Collect supernatant 2 (day 4)
 
-**PEG-it concentration**
+1. Transfer the supernatant (SN2) to the collection tube, pooling it with SN1.
 
-- [ ] Add 5× PEG-it to the SN.
-- [ ] Mix by inverting and store at 4 °C overnight (12 h to a few days).
+## Clearing the supernatant
 
-## Day 6 — Concentrate
+At this point the lentivirus supernatant can be used for a **fresh infection**, or **concentrated** for storage and later use. Fresh infection is the most efficient and fastest way to transduce cells. Either way, the HEK293T cells are first removed from the supernatant:
 
-- [ ] Centrifuge the PEG-it:SN mix at 1500 g and 4 °C for 30 min.
-- [ ] Resuspend the pellet in PBS and store at −80 °C.
-- Standard stock concentration is 20× (e.g. 300 µl PBS for a 6-well when 6 ml SN have been collected).
+- **Clearing by centrifugation:** spin the supernatant at 800 × g for 10 min (MD Anderson) or up to 3000 × g for 15 min (Retro-Concentin) at room temperature.
+- **Clearing by filtration:** pass the supernatant through a yellow 0.45 µm Millipore filter.
 
-## Comparison of published protocols
+Carefully transfer the cleared supernatant into a new tube.
 
-Available protocols differ widely in the ratios of packaging/envelope to transfer plasmids:
+## Virus concentration (optional, day 4–5)
 
-| | Broad (10 cm) | Broad (6-well) | In-house (10 cm) | Trono lab (10 cm) | Addgene (6 cm) |
+Follows the homemade lentivirus concentrator protocol of the MD Anderson Functional Genomics Core.
+The 4× stock is made in-house: see [4× Lentivirus Concentrator Solution](/protocols/buffers-and-recipes/lentivirus-concentrator/).
+
+1. Add **1 volume of 4× concentrator to 3 volumes of cleared supernatant** (final: 10 % PEG-8000, 0.3 M NaCl).
+2. Mix well by shaking for 60 s, then incubate at 4 °C for at least 4 h, better overnight.
+3. Spin down at **1600 × g for 60 min at 4 °C**.
+4. Carefully remove the supernatant without disturbing the pellet.
+5. Thoroughly resuspend the viral pellet in PBS or the desired medium (without serum and antibiotics) at 1/10–1/20 of the original volume, by gently pipetting up and down.
+6. Aliquot and store at −80 °C until use.
+
+:::note
+The MD Anderson protocol calls for constant rocking at ~60 rpm during the 4 °C incubation.
+In our hands this does not appear to be required but we haven't tested it side-by-side.
+:::
+
+## Protocol notes and open questions
+Numerous protocols are available for lentivirus production.
+Most follow the same basic workflow but vary in their choice of transfection reagent and in the ratios of the plasmids used.  
+Our protocol mainly follows the RNAi Consortium (TRC) / Broad Institute protocol for lentivirus production.
+The Broad protocol is very detailed and, judging by its version notes, has been continuously optimized. It is available at the [Broad GPP portal](https://portals.broadinstitute.org/gpp/public/resources/protocols) (*TRC shRNA sgRNA ORF Low Throughput Viral Production, 2015-06*).  
+
+### Comparison of published protocols
+The ratio of envelope to packaging to transfer plasmid ranges widely in published protocols, from 1 : 1.8 : 2.8 to 1 : 10 : 10.  
+To our knowledge, there is no experimentally established optimum.  
+
+| | Broad (6-well) | Broad (10 cm) | Trono lab (15 cm) | Melnick lab (10 cm) | Addgene (6 cm) |
 |---|---|---|---|---|---|
-| pMD2.G | 0.9 µg | 50 ng | 1 µg | 39.5 µg | 250 ng |
-| psPAX2 | 9 µg | 500 ng | 3 µg | 73 µg | 750 ng |
-| pLKO | 9 µg | 500 ng | 4 µg | 112.5 µg | 1000 ng |
-| ratio | 1 : 10 : 10 | 1 : 10 : 10 | 1 : 3 : 4 | 1 : 1.8 : 2.8 | 1 : 3 : 4 |
-| Transfection reagent | 54 µl (TransIT) | 3 µl (TransIT) | 24 µl (FuGENE) | CaCl<sub>2</sub> | 6 µl (FuGENE) |
-| DNA : reagent | 1 µg : 2.7 µl | 1 µg : 3 µl | 1 µg : 3 µl | n/a | 1 µg : 3 µl |
+| envelope (pMD2.G) | 50 ng | 0.9 µg | 7.9 µg | 1 µg | 250 ng |
+| packaging (psPAX2) | 500 ng | 9 µg | 14.6 µg | 3 µg | 750 ng |
+| transfer (pLKO) | 500 ng | 9 µg | 22.5 µg | 4 µg | 1000 ng |
+| ratio | 1 : 10 : 10 | 1 : 10 : 10 | 1 : 1.8 : 2.8 | 1 : 3 : 4 | 1 : 3 : 4 |
+| Transfection reagent | 3 µl (TransIT) | 54 µl (TransIT) | CaPO<sub>4</sub> | 24 µl (FuGENE) | 6 µl (FuGENE) |
+| DNA : reagent | 1 µg : 3 µl | 1 µg : 2.7 µl | n/a | 1 µg : 3 µl | 1 µg : 3 µl |
 
-The ratio of a 10 cm dish (59 cm²) to a 6-well (9.6 cm²) is ~6:1. The Broad protocols, with a ~20:1 ratio for DNA and a ~18:1 ratio for the transfection reagent, are therefore highly inconsistent.
+The Trono lab protocol is written for 15 cm dishes and gives its amounts as one mix for five plates
+(39.5 / 73 / 112.5 µg); the column above is that mix divided by five. Their packaging plasmid is pCMVR8.74
+rather than psPAX2.
 
-The TransIT-LT1 routine protocol recommends a DNA : reagent ratio of 1:3:
+### What we use and why
+**Transfection reagent**  
+Commonly used transfection reagents include Lipofectamine 2000, FuGENE and TransIT-LT1.
+We have used all of them and although we have not done a direct head-to-head comparison, they seem to be interchangeable.
+We use TransIT-LT1 mainly for economic reasons.  
 
-| | 6-well | 10 cm |
-|---|---|---|
-| DNA | 2.5 µg | 15 µg |
-| TransIT | 7.5 µl | 45 µl |
+**Ratios**  
+- We use a 1 : 3 : 4 ratio for envelope (pMD2.G) to packaging (psPAX2) to transfer plasmid. This follows the Melnick lab protocol and the Addgene
+protocol for pLKO.1 (#10878).
+- For larger transfer plasmids (e.g. Cas9), a ratio of 1 : 3 : 6 may be used. However, we have not systematically tested these ratios.  
+- We use TransIT-LT1 at 1 µg DNA : 3 µl reagent. This is the manufacturer's recommended starting ratio.
 
-## Version notes
 
-- **1.0 → 1.1:** added different intensities and ratios to the 10 cm transfection protocol.
+**When not to use TransIT-LT1**  
+TransIT-LT1 is expensive and the cost scales with the dish. At 10 cm and above, reserve it for cargo that is
+large or hard to package — Cas constructs and CRISPR gRNA libraries — where
+transfection efficiency has to be maximized and a failed prep costs more than the reagent. For routine
+large-scale preps, use PEI or calcium-phosphate transfection instead: both cost a fraction as much and work
+well with ordinary inserts.
+Large transfer vectors package less efficiently in general, which is also why the 1 : 3 : 6 ratio exists as an
+option for them (below).
+
+**10 cm dish protocols**  
+The amounts of DNA and transfection reagent for a 10 cm dish are not scaled up proportionally from the 6-well
+protocol, but reduced relative to the TransIT-LT1 manufacturer's protocol. The reduction follows the Melnick
+lab protocol and is probably feasible because we use a smaller culture volume at this step (10 ml rather than
+15 ml).
+
+- Low intensity I (1:3:4) is our standard and is the column in the main transfection table: 10 µg total DNA and 30 µl TransIT-LT1.
+- For large transfer vectors, intensifying the transfection and/or changing the ratios can help.
+- High intensity (45 µl TransIT) corresponds to the TransIT manufacturer's protocol.
+- Use a 1:3:6 ratio for large transfer vectors (e.g. Cas9 constructs).
+
+| | low intensity I (1:3:4) | low intensity II (1:3:6) | moderate intensity (1:3:4) | high intensity (1:3:4) | high intensity (1:3:6) |
+|---|---|---|---|---|---|
+| pMD2.G (EX01) | 1.25 µg | 1 µg | 1.5 µg | 1.9 µg | 1.5 µg |
+| psPAX2 (EX02) | 3.75 µg | 3 µg | 4.5 µg | 5.7 µg | 4.5 µg |
+| transfer plasmid | 5 µg | 6 µg | 6 µg | 7.6 µg | 9 µg |
+| **total DNA** | 10 µg | 10 µg | 12 µg | ~15 µg | 15 µg |
+| TransIT-LT1 | 30 µl | 30 µl | 36 µl | 45 µl | 45 µl |
+| Optimem (total) | 1.5 ml | 1.5 ml | 1.5 ml | 1.5 ml | 1.5 ml |
+
+
+
+### Open questions
+
+- **Virus-production medium:** the Broad protocol suggests adding BSA instead of FBS to enhance virus production.
+This would be highly economical but we have not tested this ourselves.
+- **Ratio of envelope to packaging to transfer plasmid**: published protocols vary widely and we have not yet tested this systematically.
+- **Constant rocking** during the concentrator incubation does not appear to be necessary (see
+  [Virus concentration](#virus-concentration-optional-day-45)), but this has not been tested side by side.
+
+## References & Credit
+
+Adapted from the Melnick lab protocol *Lentivirus preparation* (v1.1–v1.3).
+
+1. Broad Institute, Genetic Perturbation Platform. *TRC shRNA sgRNA ORF Low Throughput Viral Production* (2015-06). [GPP protocols](https://portals.broadinstitute.org/gpp/public/resources/protocols), accessed 2026-11-15.
+2. MD Anderson Cancer Center, Functional Genomics Core. *Homemade lentivirus concentrator protocol* and *virus concentration protocol*. [Functional Genomics Core resources](https://www.mdanderson.org/research/research-resources/core-facilities/functional-genomics-core/resources.html), accessed 2026-11-15.
+3. Mirus Bio. *TransIT-LT1 Transfection Reagent protocol* (ML001; MIR 2300, 2304, 2305, 2306). [PDF](https://tools.mirusbio.com/assets/protocols/ml001_transit_lt1_transfection_reagent.pdf), accessed 2026-11-15.
+4. Addgene. *pLKO.1 – TRC Cloning Vector* (Addgene plasmid #10878; protocol v1.0, December 2006), section E "Producing lentiviral particles". [addgene.org/protocols/plko](https://www.addgene.org/protocols/plko/), accessed 2026-11-15.
+5. Thermo Fisher Scientific. *Lipofectamine 2000 Reagent protocol*. [PDF](https://documents.thermofisher.com/TFS-Assets/LSG/manuals/Lipofectamine_2000_Reag_protocol.pdf), accessed 2026-11-15.
+6. Trono lab, EPFL. *Lentivirus production protocol*. [PDF](https://www.epfl.ch/labs/tronolab/wp-content/uploads/2019/06/LV_production.pdf), accessed 2026-11-15.
+7. System Biosciences. *Retro-Concentin Retroviral Concentration Reagent user manual*. [PDF](https://www.systembio.com/wp/wp-content/uploads/2020/10/Manual_Retro-Concentin_WEB-1.pdf), accessed 2026-11-15.
+
+<details>
+<summary>Version history</summary>
+
+| Version | Date | Authors | Changes |
+|---|---|---|---|
+| 1.0 | | JCH | First version. |
+| 1.1 | | JCH | Added different intensities and ratios to the 10 cm transfection protocol. |
+| 1.2 | | JCH | Short version. |
+| 1.3 | 13 Apr 2025 | LK, DD | Switched from PEG-it to the homemade lentivirus concentrator. |
+| 1.4 | 15 Nov 2026 | JCH | Online version: biosafety notice, timeline, materials with catalog numbers, 10 cm standard set to 10 µg DNA / 30 µl TransIT. |
+
+</details>

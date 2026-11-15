@@ -1,0 +1,40 @@
+---
+// Replaces Starlight's page title. On protocol and recipe pages (any page under protocols/ with a
+// `version` in its frontmatter) it adds the version / authors / dates line and the bench toolbar,
+// so protocol files need no imports or header boilerplate.
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+import BenchTools from './BenchTools.astro';
+import members from '../data/members.json';
+
+const { entry, lastUpdated } = Astro.locals.starlightRoute;
+const { version, authors, firstPosted } = entry.data;
+const isProtocol = entry.id.startsWith('protocols/') && version !== undefined;
+
+const authorList = authors === undefined ? [] : Array.isArray(authors) ? authors : [authors];
+// Authors are given as initials (e.g. JCH); the full name from members.json is shown on hover.
+const initials = (name: string) => name.split(/\s+/).map((w) => w.replace(/[^A-Za-zÀ-ÿ]/g, '')[0] ?? '').join('').toUpperCase();
+const fullName = (a: string) => members.people.find((m) => initials(m.name) === a)?.name;
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+---
+
+<Default />
+{
+  isProtocol && (
+    <>
+      <p class="protocol-meta">
+        <span><strong>Version {version}</strong></span>
+        {authorList.length > 0 && (
+          <span>
+            {authorList.map((a, i) => (
+              <>{i > 0 && ', '}{fullName(a) ? <abbr title={fullName(a)}>{a}</abbr> : a}</>
+            ))}
+          </span>
+        )}
+        {firstPosted && <span>First posted <time datetime={iso(firstPosted)}>{fmt(firstPosted)}</time></span>}
+        {lastUpdated && <span>Last updated <time datetime={iso(lastUpdated)}>{fmt(lastUpdated)}</time></span>}
+      </p>
+      <BenchTools />
+    </>
+  )
+}

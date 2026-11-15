@@ -5,5 +5,6 @@
   { "slug": "facs",              "label": "FACS" },
   { "slug": "microscopy",        "label": "Microscopy" },
   { "slug": "cell-culture",      "label": "Cell culture" },
-  { "slug": "crispr-screening",  "label": "CRISPR screening" }
+  { "slug": "crispr-screening",  "label": "CRISPR screening" },
+  { "slug": "buffers-and-recipes", "label": "Buffers & recipes" }
 ]

@@ -77,3 +77,72 @@ starlight-toc a[aria-current='true'], starlight-toc a:hover { color: var(--accen
 /* "On this page" (right): only on longer pages. Hidden when a page has fewer than 4 top-level headings.
    Force it off on a page with `tableOfContents: false` in the front matter. */
 .right-sidebar-container:not(:has(starlight-toc li:nth-child(4))) { display: none; }
+
+/* Protocol header line (version · authors · dates), see src/components/PageTitle.astro */
+.protocol-meta { display: flex; flex-wrap: wrap; gap: 0.2rem 0; margin: 0.4rem 0 0; font-size: var(--sl-text-sm); color: var(--sl-color-gray-3, var(--text-muted)); }
+.protocol-meta span:not(:last-child)::after { content: '·'; margin: 0 0.5rem; }
+/* "Last updated" is already in the protocol header, so drop the duplicate in the page footer */
+body:has(.protocol-meta) footer .meta p:has(time) { display: none; }
+.protocol-meta abbr { text-decoration: none; cursor: help; }
+
+/* Collapsible sections (general remarks, timeline) on protocol pages */
+.sl-markdown-content details { border: 1px solid var(--sl-color-gray-5); border-radius: 4px; padding: 0.6rem 1rem; margin: 1rem 0; }
+.sl-markdown-content details[open] { padding-bottom: 0.4rem; }
+.sl-markdown-content details > summary { font-weight: 600; cursor: pointer; margin: 0 -0.4rem; padding: 0 0.4rem; }
+.sl-markdown-content details > summary + * { margin-top: 1rem; }
+@media print { .sl-markdown-content details { border: none; padding: 0; } }
+/* Printed protocols include the collapsed sections, even when closed on screen */
+@media print { .sl-markdown-content details:not([open]) > *:not(summary) { display: revert !important; } }
+
+/* ---------- Callout (:::tip / :::note / :::caution / :::danger) colours ----------
+   Starlight's default "tip" purple and "note" blue are both very saturated, so both are
+   re-tuned below: tip to teal, note to the brand violet. Caution (amber) and danger (red)
+   keep Starlight's colours, because the draft box and the biosafety box are meant to be
+   noticed.
+   To try a different tip colour, comment out the block in use and uncomment another. */
+
+/* (A) Brand violet — same hue as links and the active sidebar item
+:root[data-theme='light'] .starlight-aside--tip {
+  --sl-color-purple-low: #f4f1fc; --sl-color-purple: var(--violet-deep); --sl-color-purple-high: #4a3488;
+}
+:root[data-theme='dark'] .starlight-aside--tip {
+  --sl-color-purple-low: #2a2552; --sl-color-purple: var(--violet); --sl-color-purple-high: #cfc3f8;
+}
+*/
+
+/* (B) Navy — quietest, matches body text
+:root[data-theme='light'] .starlight-aside--tip {
+  --sl-color-purple-low: #f3f4f8; --sl-color-purple: var(--navy); --sl-color-purple-high: #2b3057;
+}
+:root[data-theme='dark'] .starlight-aside--tip {
+  --sl-color-purple-low: #272c55; --sl-color-purple: #9fbdee; --sl-color-purple-high: #dfe7f7;
+}
+*/
+
+/* (C) Teal — in use. Separate from the brand violet, so a callout is never
+   mistaken for a link or the active sidebar item. */
+:root[data-theme='light'] .starlight-aside--tip {
+  --sl-color-purple-low: #edf7f6;    /* background */
+  --sl-color-purple: #2b9b8f;        /* left border */
+  --sl-color-purple-high: #1c5f58;   /* title and links */
+}
+:root[data-theme='dark'] .starlight-aside--tip {
+  --sl-color-purple-low: #1d3a38;
+  --sl-color-purple: #4fc9ba;
+  --sl-color-purple-high: #b7e8e1;
+}
+
+/* Note — the quietest of the four: it carries background information, not a warning.
+   Brand violet, on a background only a few percent off white.
+   --violet / --violet-deep are safe to reference: unlike --note-bg and --note-border they
+   are defined once in brand.css, not per theme. */
+:root[data-theme='light'] .starlight-aside--note {
+  --sl-color-blue-low: #f4f1fc;              /* background */
+  --sl-color-blue: var(--violet-deep);       /* left border */
+  --sl-color-blue-high: #4a3488;             /* title and links */
+}
+:root[data-theme='dark'] .starlight-aside--note {
+  --sl-color-blue-low: #2a2552;
+  --sl-color-blue: var(--violet);
+  --sl-color-blue-high: #cfc3f8;
+}
